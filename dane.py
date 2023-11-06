@@ -4,5 +4,6 @@ users_list: list = [
     {"name": "Tomasz", "nick": "Koc", "posts": 123},
     {"name": "Wiktoria", "nick": "Wika", "posts": 360},
     {"name": "Wiktoria", "nick": "Szmagała", "posts": 31},
-    {"name": "Kasia", "nick": "KKK", "posts": 45}
+    {"name": "Kasia", "nick": "KKK", "posts": 45},
+    {"name": "Agata", "nick": "AAA", "posts": 6745},
 ]
