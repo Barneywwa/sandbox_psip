@@ -1,4 +1,4 @@
 from dane import users_list
+from Utils.my_functions import add_user_to, remove_user_from, show_users_from, gui
 
-for user in users_list:
-    print(f'Twój znajomy {user["name"]} {user["nick"]} dodał {user["posts"]} postów!!!')
+gui(users_list)
