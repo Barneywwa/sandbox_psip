@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 import requests
+import folium
 import re
 
 nazwy_miejscowosci = ['Opoczno','Gdańsk','Lublin']
@@ -27,5 +28,24 @@ def get_coordinates_of(city:str)->list[float,float]:
 
     return [res_html_latitude, res_html_longitude]
 
+#for item in nazwy_miejscowosci:
+    #print(get_coordinates_of(item))
+
+
+#Zwrócić mapę z pinezką odnoszącą się do wskazanego użytkownika podanego z klawiatury
+
+#Zwrócić mapę z wszystkimi użytkownikami z danej listy (znajomymi)
+
+###RYSOWANIE MAPY
+city = get_coordinates_of(city='Opoczno')
+map = folium.Map(
+    location=city,
+    tiles="OpenStreetMap",
+    zoom_start=7
+)
 for item in nazwy_miejscowosci:
-    print(get_coordinates_of(item))
+    folium.Marker(
+        location=get_coordinates_of(city=item),
+        popup='GEOINFORMATYKA RZĄDZI OU YEAHH🚀'
+    ).add_to(map)
+map.save('mapka.html')
