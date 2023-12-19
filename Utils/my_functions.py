@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import folium
 
-def add_user_to(users_list:list) -> None:
+
+def add_user_to(users_list: list) -> None:
     """
     add object to list
     :param users_list: list - user list
@@ -11,35 +12,37 @@ def add_user_to(users_list:list) -> None:
     name = input('Podaj imie ?')
     posts = input('Podaj liczbę postów ?')
     city = input('Podaj miasto?')
-    users_list.append({'name': name, 'nick':'dupa', 'posts': posts})
-
-#add_user_to(users_list)
+    users_list.append({'name': name, 'nick': 'dupa', 'posts': posts})
 
 
-def remove_user_from(users_list:list) -> None:
+# add_user_to(users_list)
+
+
+def remove_user_from(users_list: list) -> None:
     """
     remove object from list
     :param users_list: list - user list
     :return: None
     """
-    tmp_list=[]
+    tmp_list = []
     name = input('Podaj użytkownika do usunięcia: ')
     for user in users_list:
-        if user ["name"] == name:
+        if user["name"] == name:
             print(f'Znaleziono użytkownika: {user}')
             tmp_list.append(user)
     print('Znaleziono użytkowników: ')
     print('0: Usuń wszystkich znalezionych użytkowników.')
     for numerek, user_to_be_removed in enumerate(tmp_list):
-        print(f'{numerek+1}: {user_to_be_removed}')
+        print(f'{numerek + 1}: {user_to_be_removed}')
     numer = int(input(f'Wybierz numer użytkownika do usunięcia: '))
     if numer == 0:
         for user in tmp_list:
-             users_list.remove(user)
+            users_list.remove(user)
     else:
-        users_list.remove(tmp_list[numer-1])
+        users_list.remove(tmp_list[numer - 1])
 
-#remove_user_from(users_list)
+
+# remove_user_from(users_list)
 
 def show_users_from(users_list: list) -> None:
     for user in users_list:
@@ -56,6 +59,7 @@ def update_user(users_list: list[dict, dict]) -> None:
             user['nick'] = input('podaj nową ksywkę: ')
             user['city'] = input('podaj nowe miasto')
             user['posts'] = int(input('podaj nową liczbę postów: '))
+
 
 def get_coordinates_of(city: str) -> list[float, float]:
     adres_URL = f'https://pl.wikipedia.org/wiki/{city}'
@@ -78,10 +82,12 @@ def get_coordinates_of(city: str) -> list[float, float]:
 
     return [res_html_latitude, res_html_longitude]
 
+
 # for item in nazwy_miejscowosci:
 # print(get_coordinates_of(item))
 
 user = {"city": "Lublin", "name": "Mateusz", "nick": "świetlik", "posts": 1234}
+
 
 # Zwrócić mapę z pinezką odnoszącą się do wskazanego użytkownika podanego z klawiatury
 def get_map_of_user(user: str) -> None:
@@ -97,10 +103,11 @@ def get_map_of_user(user: str) -> None:
     ).add_to(map)
     map.save(f'mapka_{user["name"]}.html')
 
+
 # Zwrócić mapę z wszystkimi użytkownikami z danej listy (znajomymi)
 
 ###RYSOWANIE MAPY
-def get_map_of(users: list[dict,dict]) -> None:
+def get_map_of(users: list[dict, dict]) -> None:
     map = folium.Map(
         location=[52.3, 21.0],
         tiles="OpenStreetMap",
@@ -117,7 +124,7 @@ def get_map_of(users: list[dict,dict]) -> None:
 
 ############################## END OF MAP ELEMENT ##############################
 
-def gui(users_list:list) -> None:
+def gui(users_list: list) -> None:
     while True:
         print(f'MENU: \n'
               f'0: Zakończ program \n'
@@ -157,4 +164,3 @@ def gui(users_list:list) -> None:
             case '6':
                 print('Rysuję mapę ze wszystkimi użytkownikami')
                 get_map_of(users_list)
-
